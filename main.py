@@ -18,6 +18,8 @@ def validate(text: str) -> None:
     """Fail hard if the entry is outside the competition gate."""
     if not text or not text.strip():
         raise ValueError("entry is empty or only whitespace")
+    if "\n" in text or "\r" in text:
+        raise ValueError("entry must be a single line")
     if not MIN_CHARS <= len(text) <= MAX_CHARS:
         raise ValueError(
             f"entry is {len(text)} characters, gate is "
